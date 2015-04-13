@@ -46,3 +46,17 @@
   (def myMap {clojure.lang.PersistentList :list, clojure.lang.PersistentVector :vector, clojure.lang.PersistentArrayMap :map})
   (myMap (type col))
   )
+
+;; Day 2 tryout
+
+
+
+;; Day 2 self study
+
+(defmacro unless
+  [test body else]
+  (list 'if (list 'not test) body (list 'do else))
+)
+
+(unless false (println "danger") (println "no danger"))
+(unless true (println "danger") (println "no danger"))
