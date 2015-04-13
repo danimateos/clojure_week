@@ -40,4 +40,9 @@
         ))
   )
 
-
+(defn collection-type
+  "returns the type of col"
+  [col]
+  (def myMap {clojure.lang.PersistentList :list, clojure.lang.PersistentVector :vector, clojure.lang.PersistentArrayMap :map})
+  (myMap (type col))
+  )
