@@ -62,13 +62,31 @@
 (unless true (println "danger") (println "no danger"))
 
 (defprotocol CoffeeMachine
-  makecoffee [c]
-  clean [c]
-  refill [c]
+  (makecoffee [c])
+  (clean [c])
+  (refill [c])
+  (status [c])
 )
 
-(def machinestate [:clean :empty :dirty])
+(def machinestate [:empty :dirty :full])
 
-(defrecord CoffeeMachine [state]
-  American  
+(defrecord Filtered [state]
+  CoffeeMachine
+  (makecoffee [_] (if (= state :full) (Filtered. :dirty) (println "not ready")))
+  (clean [_] (if (= state :dirty) (Filtered. :empty) (println "not dirty")))
+  (refill [_] (if (= state :empty) (Filtered. :full) (println "not empty")))
+  (status [_] state)
+
+  Object
+  (toString [this] (str "[" (status this) "]"))
 )
+
+(def m (Filtered. :empty))
+; #'clojure-week.core/m
+(makecoffee m)
+; "not ready"
+(refill m)
+; #clojure_week.core.Filtered{:state :full}
+(makecoffee (refill m))
+; #clojure_week.core.Filtered{:state :dirty}
+
