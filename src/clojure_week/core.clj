@@ -89,3 +89,43 @@
 ;> #clojure_week.core.Filtered{:state :full}
 (makecoffee (refill m))
 ;> #clojure_week.core.Filtered{:state :dirty}
+
+;; Day 3 exploration
+
+
+
+;; Day 3 self study
+
+; Use refs to create a vector of accounts in memory. Create debit and
+; credit functions to change the balance of an account.
+
+(def a (ref 0))
+(def b (ref 0))
+(def c (ref 0))
+(def accounts [a b c])
+
+(defn credit 
+  [amount account]
+  (dosync (alter account + amount))
+  )
+
+(defn debit
+  [amount account]
+  (dosync (alter account - amount))
+  )
+
+(credit a 100)
+(debit a 40)
+(credit b 20)
+accounts
+;> [#<Ref@7e54be29: 60> #<Ref@6d90b68a: 20> #<Ref@37c05638: 0>]
+(map deref accounts)
+(60 20 0)
+(map (partial credit 20) accounts)
+(map deref accounts)
+;> (80 40 20)
+
+; Sleeping Barber by Edsger Dijkstra, 1965.
+
+; Try implementing (size x) that computes the size of a sequence x with
+; recursion and with loop/recur.
