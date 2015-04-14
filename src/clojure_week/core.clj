@@ -82,11 +82,10 @@
 )
 
 (def m (Filtered. :empty))
-; #'clojure-week.core/m
+;>  #'clojure-week.core/m
 (makecoffee m)
-; "not ready"
+;> "not ready"
 (refill m)
-; #clojure_week.core.Filtered{:state :full}
+;> #clojure_week.core.Filtered{:state :full}
 (makecoffee (refill m))
-; #clojure_week.core.Filtered{:state :dirty}
-
+;> #clojure_week.core.Filtered{:state :dirty}
