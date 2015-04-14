@@ -60,3 +60,15 @@
 
 (unless false (println "danger") (println "no danger"))
 (unless true (println "danger") (println "no danger"))
+
+(defprotocol CoffeeMachine
+  makecoffee [c]
+  clean [c]
+  refill [c]
+)
+
+(def machinestate [:clean :empty :dirty])
+
+(defrecord CoffeeMachine [state]
+  American  
+)
