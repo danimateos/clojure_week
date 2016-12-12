@@ -132,5 +132,14 @@ accounts
 (def maxinterval 30)
 (def chairs 3)
 
-; Try implementing (size x) that computes the size of a sequence x with
-; recursion and with loop/recur.
+(def queue [])
+(defn addToQueue 
+[x queue]
+(if (< (count queue) chairs) (cons x queue) queue)
+)
+
+(defn cutHair 
+()
+)
+
+(defn barberStart)
